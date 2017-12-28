@@ -33,20 +33,20 @@ public:
 	/*
 	 * REG TMST_VALUE:
 	 * Thermistor value read by ADC signed int, in ˚C
-	 *       1111 0110 – < -10°C
-	 *       1111 0110 – -10°C
-	 *       1111 0111 – -9°C
-	 *       ...
-	 *       1111 1110 – -2°C
-	 *       1111 1111 – -1°C
-	 *       0000 0000 – 0°C
-	 *       0000 0001 – 1°C
-	 *       0000 0010 – 2°C
-	 *       ...
-	 *       0001 1001 – 25°C
-	 *       ...
-	 *       0101 0101 – 85°C 
-	 *       0101 0101 – > 85°C 
+	 * 1111 0110 – < -10°C
+	 * 1111 0110 – -10°C
+	 * 1111 0111 – -9°C
+	 * ...
+	 * 1111 1110 – -2°C
+	 * 1111 1111 – -1°C
+	 * 0000 0000 – 0°C
+	 * 0000 0001 – 1°C
+	 * 0000 0010 – 2°C
+	 * ...
+	 * 0001 1001 – 25°C
+	 * ...
+	 * 0101 0101 – 85°C
+	 * 0101 0101 – > 85°C
 	 */
 	struct TMST_VALUE
 	{
@@ -80,7 +80,7 @@ public:
 	
 	/*
 	 * REG ENABLE:
-	 * Enable/disable bits for regulators 
+	 * Enable/disable bits for regulators
 	 */
 	struct ENABLE
 	{
@@ -89,9 +89,9 @@ public:
 		/* Bits ACTIVE: */
 		/*
 		 * 1 = Transition from STANDBY to ACTIVE mode. Rails power up as defined by UPSEQx
-		 *           registers.
-		 *           0 = No effect.
-		 *           NOTE: After transition bit is cleared automatically 
+		 * registers.
+		 * 0 = No effect.
+		 * NOTE: After transition bit is cleared automatically
 		 */
 		struct ACTIVE
 		{
@@ -101,9 +101,9 @@ public:
 		/* Bits STANDBY: */
 		/*
 		 * Transition from STANDBY to ACTIVE mode. Rails power up as defined by DWNSEQx
-		 *           registers.
-		 *           NOTE: After transition bit is cleared automatically.
-		 *           STANDBY bit has priority over AVTIVE. 
+		 * registers.
+		 * NOTE: After transition bit is cleared automatically.
+		 * STANDBY bit has priority over AVTIVE.
 		 */
 		struct STANDBY
 		{
@@ -134,7 +134,7 @@ public:
 		/* Bits VPOS_EN: */
 		/*
 		 * VPOS LDO regulator enable. (1 = enabled)
-		 *           NOTE: VPOS cannot be enabled before VNEG is enabled. 
+		 * NOTE: VPOS cannot be enabled before VNEG is enabled.
 		 */
 		struct VPOS_EN
 		{
@@ -151,7 +151,7 @@ public:
 		/* Bits VNEG_EN: */
 		/*
 		 * VNEG LDO regulator enable. (1 = enabled)
-		 *           NOTE: When VNEG is disabled VPOS will also be disabled. 
+		 * NOTE: When VNEG is disabled VPOS will also be disabled.
 		 */
 		struct VNEG_EN
 		{
@@ -181,7 +181,7 @@ public:
 	
 	/*
 	 * REG VADJ:
-	 * VPOS/VNEG voltage adjustment 
+	 * VPOS/VNEG voltage adjustment
 	 */
 	struct VADJ
 	{
@@ -231,7 +231,7 @@ public:
 	
 	/*
 	 * REG VCOM:
-	 * VCOM voltage setting, byteorder little 
+	 * VCOM voltage setting, byteorder little
 	 */
 	struct VCOM
 	{
@@ -240,9 +240,9 @@ public:
 		/* Bits ACQ: */
 		/*
 		 * Kick-back voltage acquisition bit.
-		 *           1 - starts kick-back voltage measurement routine.
-		 *           NOTE: After measurement is complete bit is cleared automatically and measurement
-		 *           result is reflected in VCOM[8:0] bits. 
+		 * 1 - starts kick-back voltage measurement routine.
+		 * NOTE: After measurement is complete bit is cleared automatically and measurement
+		 * result is reflected in VCOM[8:0] bits.
 		 */
 		struct ACQ
 		{
@@ -252,10 +252,10 @@ public:
 		/* Bits PROG: */
 		/*
 		 * VCOM programming bit.
-		 *           1 - VCOM[8:0] value is committed to nonvolatile memory and becomes new power-up
-		 *               default.
-		 *           NOTE: After programming bit is cleared automatically and TPS65185 will enter
-		 *           STANDBY mode. 
+		 * 1 - VCOM[8:0] value is committed to nonvolatile memory and becomes new power-up
+		 * default.
+		 * NOTE: After programming bit is cleared automatically and TPS65185 will enter
+		 * STANDBY mode.
 		 */
 		struct PROG
 		{
@@ -265,8 +265,8 @@ public:
 		/* Bits HiZ: */
 		/*
 		 * VCOM HiZ bit.
-		 *           1 - VCOM pin is placed into hi-impedance state to allow VCOM measurement
-		 *           0 - VCOM amplifier is connected to VCOM pin 
+		 * 1 - VCOM pin is placed into hi-impedance state to allow VCOM measurement
+		 * 0 - VCOM amplifier is connected to VCOM pin
 		 */
 		struct HiZ
 		{
@@ -276,8 +276,8 @@ public:
 		/* Bits AVG: */
 		/*
 		 * Number of acquisitions that is averaged to a single kick-back voltage measurement
-		 *           NOTE: When the ACQ bit is set, the state machine repeat the A/D conversion of the
-		 *           kick-back voltage AVD[1:0] times and returns a single, averaged, value to VCOM[8:0] 
+		 * NOTE: When the ACQ bit is set, the state machine repeat the A/D conversion of the
+		 * kick-back voltage AVD[1:0] times and returns a single, averaged, value to VCOM[8:0]
 		 */
 		struct AVG
 		{
@@ -297,16 +297,16 @@ public:
 		/* Bits VCOM: */
 		/*
 		 * VCOM voltage adjustment
-		 *           VCOM = -10 mV * VCOM[8:0] in the range from 0 mV to -5.110 V
-		 *           0x000h – 0 0000 0000 – –0 mV
-		 *           0x001h – 0 0000 0001 – –10 mV
-		 *           0x002h – 0 0000 0010 – –20 mV
-		 *           ...
-		 *           0x07Dh - 0 0111 1101 – –1250 mV
-		 *           ...
-		 *           0x1FEh – 1 1111 1110 – –5100 mV
-		 *           0x1FFh – 1 1111 1111 – –5110 mV
-		 *         
+		 * VCOM = -10 mV * VCOM[8:0] in the range from 0 mV to -5.110 V
+		 * 0x000h – 0 0000 0000 – –0 mV
+		 * 0x001h – 0 0000 0001 – –10 mV
+		 * 0x002h – 0 0000 0010 – –20 mV
+		 * ...
+		 * 0x07Dh - 0 0111 1101 – –1250 mV
+		 * ...
+		 * 0x1FEh – 1 1111 1110 – –5100 mV
+		 * 0x1FFh – 1 1111 1111 – –5110 mV
+		 * 
 		 */
 		struct VCOM_
 		{
@@ -336,8 +336,8 @@ public:
 	
 	/*
 	 * REG INT_EN1:
-	 * Interrupt enable group1 
-	 * 1 = enabled, 0 = disabled 
+	 * Interrupt enable group1
+	 * 1 = enabled, 0 = disabled
 	 */
 	struct INT_EN1
 	{
@@ -422,8 +422,8 @@ public:
 	
 	/*
 	 * REG INT_EN2:
-	 * Interrupt enable group2 
-	 * 1 = enabled, 0 = disabled 
+	 * Interrupt enable group2
+	 * 1 = enabled, 0 = disabled
 	 */
 	struct INT_EN2
 	{
@@ -508,7 +508,7 @@ public:
 	
 	/*
 	 * REG INT1:
-	 * Interrupt group1 DEFAULT '0xxxxx00 
+	 * Interrupt group1 DEFAULT '0xxxxx00
 	 */
 	struct INT1
 	{
@@ -517,7 +517,7 @@ public:
 		/* Bits DTX: */
 		/*
 		 * Panel temperature-change interrupt, 1 - temperature has changed by 3 deg or more
-		 *           over previous reading 
+		 * over previous reading
 		 */
 		struct DTX
 		{
@@ -538,7 +538,7 @@ public:
 		/* Bits TMST_HOT: */
 		/*
 		 * Thermistor hot interrupt. 1 - thermistor temperature is equal or greater than
-		 *           TMST_HOT threshold 
+		 * TMST_HOT threshold
 		 */
 		struct TMST_HOT
 		{
@@ -547,7 +547,7 @@ public:
 		/* Bits TMST_COLD: */
 		/*
 		 * Thermistor cold interrupt. 1 - thermistor temperature is equal or less than
-		 *           TMST_COLD threshold 
+		 * TMST_COLD threshold
 		 */
 		struct TMST_COLD
 		{
@@ -594,7 +594,7 @@ public:
 	
 	/*
 	 * REG INT2:
-	 * Interrupt group2 
+	 * Interrupt group2
 	 */
 	struct INT2
 	{
@@ -603,7 +603,7 @@ public:
 		/* Bits VB_UV: */
 		/*
 		 * Positive boost converter undervoltage detect interrupt 1 - under-voltage on
-		 *          DCDC1 detected 
+		 * DCDC1 detected
 		 */
 		struct VB_UV
 		{
@@ -618,7 +618,7 @@ public:
 		/* Bits VN_UV: */
 		/*
 		 * Inverting buck-boost converter under voltage detect interrupt 1 -
-		 *           undervoltage on DCDC2 detected 
+		 * undervoltage on DCDC2 detected
 		 */
 		struct VN_UV
 		{
@@ -639,7 +639,7 @@ public:
 		/* Bits VCOMF: */
 		/*
 		 * VCOM fault detection 1 - fault on VCOM detected
-		 *           (VCOM is outside normal operating range) 
+		 * (VCOM is outside normal operating range)
 		 */
 		struct VCOMF
 		{
@@ -654,7 +654,7 @@ public:
 		/* Bits EOC: */
 		/*
 		 * ADC end of conversion interrupt 1 - ADC conversion is complete
-		 *           (temperature acquisition is complete) 
+		 * (temperature acquisition is complete)
 		 */
 		struct EOC
 		{
@@ -683,7 +683,7 @@ public:
 	
 	/*
 	 * REG UPSEQ0:
-	 * Power-up strobe assignment 
+	 * Power-up strobe assignment
 	 */
 	struct UPSEQ0
 	{
@@ -756,7 +756,7 @@ public:
 	
 	/*
 	 * REG UPSEQ1:
-	 * Power-up sequence delay times 
+	 * Power-up sequence delay times
 	 */
 	struct UPSEQ1
 	{
@@ -829,7 +829,7 @@ public:
 	
 	/*
 	 * REG DWNSEQ0:
-	 * Power-down strobe assignment 
+	 * Power-down strobe assignment
 	 */
 	struct DWNSEQ0
 	{
@@ -902,7 +902,7 @@ public:
 	
 	/*
 	 * REG DWNSEQ1:
-	 * Power-down sequence delay times 
+	 * Power-down sequence delay times
 	 */
 	struct DWNSEQ1
 	{
@@ -982,7 +982,7 @@ public:
 	
 	/*
 	 * REG TMST1:
-	 * Thermistor configuration 
+	 * Thermistor configuration
 	 */
 	struct TMST1
 	{
@@ -991,7 +991,7 @@ public:
 		/* Bits READ_THERM: */
 		/*
 		 * Read thermistor value. 1 - initiates temperature acquisition
-		 *           NOTE: Bit is self-cleared after acquisition is completed 
+		 * NOTE: Bit is self-cleared after acquisition is completed
 		 */
 		struct READ_THERM
 		{
@@ -1032,9 +1032,9 @@ public:
 		/* Bits DT: */
 		/*
 		 * Panel temperature-change interrupt threshold DTX interrupt is issued when
-		 *           difference between most recent temperature reading and baseline temperature
-		 *           is equal to or greater than threshold value. See Hot, Cold, and
-		 *           Temperature-Change Interrupts for details. 
+		 * difference between most recent temperature reading and baseline temperature
+		 * is equal to or greater than threshold value. See Hot, Cold, and
+		 * Temperature-Change Interrupts for details.
 		 */
 		struct DT
 		{
@@ -1069,7 +1069,7 @@ public:
 	/*
 	 * REG TMST2:
 	 * Thermistor register 2: hot/cold temperature setting,
-	 *       default cold=0C, hot=50C 
+	 * default cold=0C, hot=50C
 	 */
 	struct TMST2
 	{
@@ -1078,9 +1078,9 @@ public:
 		/* Bits TMST_COLD: */
 		/*
 		 * Thermistor COLD threshold
-		 *           NOTE: An interrupt is issued when thermistor temperature is equal or less
-		 *           than COLD threshold
-		 *           temp = -7C + TMST_COLD 
+		 * NOTE: An interrupt is issued when thermistor temperature is equal or less
+		 * than COLD threshold
+		 * temp = -7C + TMST_COLD
 		 */
 		struct TMST_COLD
 		{
@@ -1090,9 +1090,9 @@ public:
 		/* Bits TMST_HOT: */
 		/*
 		 * Thermistor HOT threshold
-		 *           NOTE: An interrupt is issued when thermistor temperature is equal or greater
-		 *           than HOT threshold
-		 *           temp = 42C + TMST_HOT 
+		 * NOTE: An interrupt is issued when thermistor temperature is equal or greater
+		 * than HOT threshold
+		 * temp = 42C + TMST_HOT
 		 */
 		struct TMST_HOT
 		{
@@ -1122,7 +1122,7 @@ public:
 	
 	/*
 	 * REG PG:
-	 * Power good status each rails 
+	 * Power good status each rails
 	 */
 	struct PG
 	{
@@ -1205,7 +1205,7 @@ public:
 	
 	/*
 	 * REG REVID:
-	 * Device revision ID information 
+	 * Device revision ID information
 	 */
 	struct REVID
 	{
